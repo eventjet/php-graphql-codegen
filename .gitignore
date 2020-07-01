@@ -1,0 +1,7 @@
+/vendor/
+/composer.lock
+/infection-log.txt
+.phpunit.result.cache
+/data/*
+!/data/getEvents.graphql.dist
+!/data/schema.graphql.dist

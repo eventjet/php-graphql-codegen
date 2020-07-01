@@ -1,0 +1,61 @@
+{
+    "name": "eventjet/php-graphql-codegen",
+    "type": "library",
+    "description": "",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.4",
+        "symfony/console": "^5.1",
+        "webonyx/graphql-php": "^14.0"
+    },
+    "require-dev": {
+        "eventjet/coding-standard": "^3.1",
+        "infection/infection": "^0.16",
+        "maglnet/composer-require-checker": "^2.0",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan": "^0.12.5",
+        "phpstan/phpstan-phpunit": "^0.12.6",
+        "phpstan/phpstan-strict-rules": "^0.12.1",
+        "phpunit/phpunit": "^9.0",
+        "vimeo/psalm": "^3.8"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Eventjet\\GraphqlCodegen\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eventjet\\Test\\Functional\\GraphqlCodegen\\": "tests/functional",
+            "Eventjet\\Test\\Unit\\GraphqlCodegen\\": "tests/unit"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://pack.eventjet.at/"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "check": [
+            "@check-deps",
+            "@cs-check",
+            "@psalm",
+            "@phpstan",
+            "@phpunit",
+            "@infection"
+        ],
+        "check-deps": "vendor/bin/composer-require-checker",
+        "cs-check": "vendor/bin/phpcs",
+        "cs-fix": "vendor/bin/phpcbf",
+        "infection": "vendor/bin/infection --threads=4 --min-msi=100 --min-covered-msi=100",
+        "infection-xdebug": "@composer run --timeout=0 infection -- --initial-tests-php-options='-d zend_extension=xdebug.so'",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "phpunit": "vendor/bin/phpunit",
+        "psalm": "vendor/bin/psalm"
+    }
+}
